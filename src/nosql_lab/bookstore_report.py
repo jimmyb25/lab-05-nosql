@@ -34,6 +34,7 @@ def main():
 		##print number of authors in list
 		author_num = authors_collection.count_documents({ "_id": { "$in": author_ids_list } })
 		print("Number of authors:",author_num)
+		print("")
 		
 		##print each author, along with their books
 		for author_id in author_ids_list:
@@ -48,9 +49,11 @@ def main():
 				title = book.get("title")
 				year = book.get("published_year")
 				print(f"  {title} ({year})")
+			print("")
 	except Exception as e:
 		logger.error(f"Connection failed: {e}")
 	finally:
+		logger.info("Task complete.")
 		client.close()
 
 ##create the if main function to run
